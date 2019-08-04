@@ -12,7 +12,7 @@ For this application, the  directory tree (omitting .gitignore, package.json, pa
 
 (Click on the folder names to go to relevant section.)
 
-book-search
+    book-search
     |-- client
         |-- build
         |-- node_modules
@@ -72,7 +72,7 @@ book-search
 
 (Adapted from [Charles Stover](https://charlesstover.com/)'s article ["Optimal file structure for React applications"](https://medium.com/@Charles_Stover/optimal-file-structure-for-react-applications-f3e35ad0a145).)
 
-### BUILD FOLDER
+### BUILD folder
 
 The **build** folder is the location of the final, production-ready build. It is created by running `npm run build` once the app is ready for production (deployment).
 
@@ -80,7 +80,7 @@ The **build** folder is the location of the final, production-ready build. It is
 
 The folder **node_modules** is where packages installed by NPM live. It is created by running `npm init` (or `npm init -y` for default settings). Installing additional dependencies by running `npm i <dependency name>` will also put those here.
 
-### PUBLIC FOLDER
+### PUBLIC folder
 
 The folder **public** is where the app's static files reside. Static content can be delivered to an end user without having to be generated, modified, or processed (so it's one of the simplest and most efficient content types to transmit over the Internet.)
 
@@ -92,25 +92,23 @@ Public files maintain the same file name in production, which means that they ca
   Also, from MDN: "The web app manifest provides information about an application (such as name, author, icon, and description) in a JSON text file. The purpose of the manifest is to install web applications to the homescreen of a device, providing users with quicker access and a richer experience.
   (https://developer.mozilla.org/en-US/docs/Web/Manifest)
 
-### SRC FOLDER
+### SRC folder
 
 The app's dynamic files (imported by the JavaScript application or with mutable contents) should be placed in **src**.
 
 Webpack handles the serving of updated (instead of cached) contents to the client by assigning a unique file name to the changed files in the production build. (So we can use simple, intuitive file names in development, such as header.png instead of header-2019-02-08-final.png, and never have to worry about the client using the outdated cached copy, because Webpack will automatically rename header.png to header.unique-hash.png, where the unique hash changes only when header.png changes.)
 
 #### COMPONENTS
+
   Not a built-in React folder, but one of the most commonly agreed-on, as a React app could be considered a collection of Components.
   It's considered good practice to keep related code as close as possible. (E.g. style for a component in that component's own folder, or any utilities not shared by any other Components - those can be in their own utils folder within the Component folder.)
   App.js can also be moved into its own folder here, leaving just the entry files (those Webpack needs to start: index.js to render the application to the DOM, and index.css for base style, and possibly the service-worker.js if the application is to be available offline) out in the main src directory.
 
-    Including an index.js here makes it possible to import the entire contents of the directory (all Components) by requiring `./components` only.
-    (By default when importing a directory, React will look for the index.js file and grab all the Components imported into it.)
+Including an index.js here makes it possible to import the entire contents of the directory (all Components) by requiring `./components` only. (By default when importing a directory, React will look for the index.js file and grab all the Components imported into it.)
   
-      The index.js file within each Component folder is the entry point for importing that Component.
-      (It should contain nothing but an export statement that points to the topmost Component at any point in time, because the topmost Component changes often during development.)
+The index.js file within each Component folder is the entry point for importing that Component. (It should contain nothing but an export statement that points to the topmost Component at any point in time, because the topmost Component changes often during development.)
     
-      If a Component is not reusable but a tightly-coupled child Component of another, it's good practice to nest it in its parent Component's directory.
-      (This helps to avoid dead code when deprecating a Component.)
+If a Component is not reusable but a tightly-coupled child Component of another, it's good practice to nest it in its parent Component's directory. (This helps to avoid dead code when deprecating a Component.)
 
 #### ASSETS
 
