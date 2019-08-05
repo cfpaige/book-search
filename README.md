@@ -194,6 +194,10 @@ This app creates only one schema, specified in **_book.js_**, while **_index.js_
 
 Specify the CRUD actions depending on the route requested.
 
+### server.js
+
+The Express server. Specifies routes, connects to the database, defines the static directory to use in production (the bundled /client/build).
+
 ----------------------------------
 
 #### Procfile
